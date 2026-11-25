@@ -608,14 +608,11 @@ elif page == "Моя библиотека":
 # ==========================================
 # 8. ПРОГРЕСС ЧТЕНИЯ
 # ==========================================
-
 elif page == "Избранное":
 
     st.title("❤️ Избранное")
 
-    st.write(
-        "Твоя личная подборка книг."
-    )
+    st.write("Твоя личная подборка книг.")
 
     favorite_books = [
         book for book in books
@@ -624,9 +621,7 @@ elif page == "Избранное":
 
     if favorite_books:
 
-        st.write(
-            f"В избранном книг: {len(favorite_books)}"
-        )
+        st.write(f"В избранном книг: {len(favorite_books)}")
 
         for book in favorite_books:
 
@@ -634,30 +629,35 @@ elif page == "Избранное":
 
                 cover_path = book.get("cover")
 
-    if cover_path and os.path.exists(cover_path):
-        col_cover, col_info = st.columns([1, 3])
+                if cover_path and os.path.exists(cover_path):
 
-        with col_cover:
-            st.image(cover_path, width=130)
+                    col_cover, col_info = st.columns([1, 3])
 
-        with col_info:
-            st.markdown(f"### 📖 {book['title']}")
-            st.write(f"Автор: {book['author']}")
-            st.write(f"Жанр: {book['genre']}")
-            st.write(f"Страниц: {book['pages']}")
-            st.write(f"Статус: {book['status']}")
+                    with col_cover:
+                        st.image(cover_path, width=130)
+
+                    with col_info:
+                        st.markdown(f"### 📖 {book['title']}")
+                        st.write(f"Автор: {book['author']}")
+                        st.write(f"Жанр: {book['genre']}")
+                        st.write(f"Страниц: {book['pages']}")
+                        st.write(f"Статус: {book['status']}")
+
+                else:
+
+                    st.markdown(f"### 📖 {book['title']}")
+                    st.write(f"Автор: {book['author']}")
+                    st.write(f"Жанр: {book['genre']}")
+                    st.write(f"Страниц: {book['pages']}")
+                    st.write(f"Статус: {book['status']}")
 
     else:
-        st.markdown(f"### 📖 {book['title']}")
-        st.write(f"Автор: {book['author']}")
-        st.write(f"Жанр: {book['genre']}")
-        st.write(f"Страниц: {book['pages']}")
-        st.write(f"Статус: {book['status']}")
 
         st.info(
             "Пока здесь нет избранных книг. "
             "Добавь их в избранное в своей библиотеке."
         )
+
 elif page == "Мои цели":
 
     st.title("🎯 Мои цели")
